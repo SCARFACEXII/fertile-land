@@ -17,7 +17,8 @@ import { Context as GameContext } from "features/game/GameProvider";
 import { hasFeatureAccess } from "lib/flags";
 import { Memory } from "./Memory";
 import { SolarFarm } from "./SolarFarm";
-import { EnergyCircuit } from "./EnergyCircuit";
+import { PowerFlowCables } from "./PowerFlowCables";
+
 
 const host = window.location.host.replace(/^www\./, "");
 const LOCAL_STORAGE_KEY = `portal-chooser-${host}-${window.location.pathname}`;
@@ -71,15 +72,15 @@ export const PORTAL_OPTIONS: PortalOption[] = [
     id: "solarfarm" as MinigameName,
     npc: "billy",
     title: "Solar Farm",
-    description: "Alinea los paneles al Sol y genera la mayor energía.",
+    description: "Align the panels to the Sun and generate the most energy.",
     component: SolarFarm,
   },
   {
-    id: "energy-circuit" as MinigameName,
+    id: "power-flow-cables",
     npc: "billy",
-    title: translate("portal.energycircuit.title"),
-    description: translate("portal.energycircuit.description"),
-    component: EnergyCircuit,
+    title: "Power Flow — Cables",
+    description: "Dig down and reveal wires. Complete the circuit to the battery.",
+    component: PowerFlowCables,
   },
 ];
 
