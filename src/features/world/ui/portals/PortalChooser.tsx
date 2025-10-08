@@ -16,6 +16,8 @@ import { MineWhack } from "./MineWhack";
 import { Context as GameContext } from "features/game/GameProvider";
 import { hasFeatureAccess } from "lib/flags";
 import { Memory } from "./Memory";
+import { SolarFarm } from "./SolarFarm";
+import { EnergyCircuit } from "./EnergyCircuit";
 
 const host = window.location.host.replace(/^www\./, "");
 const LOCAL_STORAGE_KEY = `portal-chooser-${host}-${window.location.pathname}`;
@@ -27,16 +29,6 @@ function hasReadIntro() {
 function acknowledgeIntroRead() {
   localStorage.setItem(LOCAL_STORAGE_KEY, new Date().toString());
 }
-
-/**
- * Add a new portal option here
- *
- * @param id: The id of the minigame
- * @param npc: The NPC that will be displayed in the button
- * @param title: The title of the portal
- * @param description: The description of the portal
- * @param component: The portal component to be displayed when the button is clicked
- */
 
 interface PortalOption {
   id: MinigameName;
@@ -75,7 +67,22 @@ export const PORTAL_OPTIONS: PortalOption[] = [
     description: translate("portal.mineWhack.description"),
     component: MineWhack,
   },
+  {
+    id: "solarfarm" as MinigameName,
+    npc: "billy",
+    title: "Solar Farm",
+    description: "Alinea los paneles al Sol y genera la mayor energía.",
+    component: SolarFarm,
+  },
+  {
+    id: "energy-circuit" as MinigameName,
+    npc: "billy",
+    title: translate("portal.energycircuit.title"),
+    description: translate("portal.energycircuit.description"),
+    component: EnergyCircuit,
+  },
 ];
+
 
 export const PortalChooser: React.FC<{ onClose: () => void }> = ({
   onClose,
